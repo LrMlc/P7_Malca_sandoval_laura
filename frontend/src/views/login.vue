@@ -32,7 +32,7 @@ export default {
             password:'',
         }
     },
-    computed: function(){
+    computed:{
         filledFields : function(){
             if(this.mode=='create'){
                 if(this.nickname != "" && this.password != ""){
@@ -43,6 +43,7 @@ export default {
             }
         }
     },
+
     methods: {
         switchToCreateAccount: function(){
             this.mode = 'create';
