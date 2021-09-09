@@ -1,7 +1,7 @@
 <template>
   <header>     
         <div id="text">
-            <img src="../assets/logos/icon-left-font-monochrome-white.pbg" alt="Groupomania">  
+            <img src="../assets/logos/icon-left-font-monochrome-white.png" alt="Groupomania">  
         </div>             
   </header>
 </template>
