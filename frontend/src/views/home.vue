@@ -1,23 +1,18 @@
 <template>
-    <nav>
-        <router-link to=".views/login.vue"><i class="fas fa-power-off"></i>Déconnexion</router-link>
-    </nav>  
+  <div class="home">
+    <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  </div>
 </template>
+
 <script>
-import { defineComponent } from '@vue/composition-api'
+// @ is an alias to /src
+import HelloWorld from '@/components/HelloWorld.vue'
 
-export default defineComponent({
-    setup() {
-        
-    },
-})
-</script>
-
-<style scoped>
-nav{
-  display: flex;
-  align-items: right;
-  height: 10px;
-  border: 1px solid #ff6666;
+export default {
+  name: 'Home',
+  components: {
+    HelloWorld
+  }
 }
-</style>
+</script>
