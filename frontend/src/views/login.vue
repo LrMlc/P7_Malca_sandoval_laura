@@ -89,23 +89,19 @@ button {
     padding: 16px;
     transition: .4s background-color;
   }
-.card__action {
+.card-create-account {
     color:#2196F3;
     text-decoration: underline;
   }
-.card__action:hover {
+.card-create-account:hover {
     cursor:pointer;
   }
 button:hover {
     cursor:pointer;
     background: #1976D2;
   }
-button--disabled {
+login-btn-enable, submit-btn-enable {
     background:#cecece;
     color:#ececec
-  }
-button--disabled:hover {
-    cursor:not-allowed;
-    background:#cecece;
   }
 </style>
