@@ -1,11 +1,19 @@
 <template>
+<section>
+  <headercomp />
   <router-view></router-view>
+</section>
+
 </template>
 
 <script>
+import headercomp from '@/components/header.vue';
+
+
 export default {
   name: 'App',
   components: {
+    headercomp
   }
 }
 </script>

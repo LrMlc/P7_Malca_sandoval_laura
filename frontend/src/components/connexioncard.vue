@@ -11,10 +11,10 @@
             <input v-model="password" class=" form-row-input" type="text" placeholder="password">
         </div>
         <div class="login-form">
-            <button class="login-btn-enable" v-if="mode== 'login'">
+            <button class="btn" :class="{'login-btndisable' : !filledFields}" v-if="mode== 'login'">
             Connexion
             </button>
-            <button @click="createAccount()" class="btn" :class="{'submit-btn-enable' : !filledFields()}" v-else>
+            <button @click="createAccount()" class="btn" :class="{'submit-btndisable' : !filledFields}" v-else>
             Créer un compte
             </button>
         </div>
@@ -23,7 +23,7 @@
 
 <script>
 export default {
-    name: 'login',
+    name: 'connexioncard',
     data: function (){
         return{
             mode: 'login',
@@ -32,14 +32,12 @@ export default {
         }
     },
     computed:{
-        filledFields : function(){
-            if(this.mode=='create'){
+        filledFields(){
                 if(this.nickname != "" && this.password != ""){
                     return true;
                 } else {
                     return false;
                 }
-            }
         }
     },
 
@@ -99,8 +97,9 @@ button:hover {
     cursor:pointer;
     background: #1976D2;
   }
-login-btn-enable, submit-btn-enable {
+button.login-btndisable, button.submit-btndisable {
     background:#cecece;
     color:#ececec
   }
+
 </style>

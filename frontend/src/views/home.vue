@@ -1,18 +1,19 @@
 <template>
-  <header />
-  <nav />
+<div>
+  <headercomp /> <!--- router-link to? router-view? --->
+  <navcomp />
+</div>
 </template>
 
 <script>
-import header from '@/components/header.vue';
-import nav from '@/components/nav.vue';
-
+import headercomp from '@/components/header.vue';
+import navcomp from '@/components/nav.vue';
 
 export default {
   name: 'Home',
   components: {
-    header,
-    nav
+    headercomp,
+    navcomp
   }
 }
 </script>

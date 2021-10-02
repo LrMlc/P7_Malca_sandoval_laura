@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'nav'
+  name: 'nav-comp'
 }
 
 </script>

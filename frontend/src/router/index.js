@@ -1,20 +1,17 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import login from '@/views/login.vue'
-import store from '@/store/index.js'
+import home from '@/views/home.vue'
 
 const routes = [
   { //ma page par défaut
     name: "home",
-    path:'/',
-    component: home,
-    header,
-    nav
+    path:'/home',
+    component: home
   },
   {
     name:"login",
-    path: '/login',
-    component: login,
-    header
+    path: '/',
+    component: login
   }
 ]
 

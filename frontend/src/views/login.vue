@@ -1,17 +1,16 @@
 <template>
-    <header />
+<div>
     <connexioncard />
+</div>
 </template>
 
 <script>
-import header from '../components/header.vue'
-import connexioncard from '../components/connexioncard.vue'
+import connexioncard from '../components/connexioncard.vue';
 
 export default {
   name: 'login',
   components: {
-    header,
-    connexioncard,
+    connexioncard
   }
 }
 </script>
