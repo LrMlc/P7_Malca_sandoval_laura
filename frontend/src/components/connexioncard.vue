@@ -8,10 +8,10 @@
             <input v-model="nickname" class=" form-row-input" type="text" placeholder="nickname">
         </div>
         <div class="login-form">
-            <input v-model="password" class=" form-row-input" type="text" placeholder="password">
+            <input v-model="password" class=" form-row-input" type="password" placeholder="password">
         </div>
         <div class="login-form">
-            <button class="btn" :class="{'login-btndisable' : !filledFields}" v-if="mode== 'login'">
+            <button @click="loginAccount()" class="btn" :class="{'login-btndisable' : !filledFields}" v-if="mode== 'login'">
             Connexion
             </button>
             <button @click="createAccount()" class="btn" :class="{'submit-btndisable' : !filledFields}" v-else>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
     name: 'connexioncard',
     data: function (){
@@ -49,10 +50,24 @@ export default {
             this.mode = 'login';
         },
         createAccount: function(){
-            this.$store.dispatch('createAccount',{
+            /*this.$store.dispatch('createAccount',{
                 nickname: this.nickname,
                 password: this.password,
-            })
+            })*/
+            axios.post("http://localhost:3000/api/user/signup", {pseudo: this.nickname, password: this.password})
+            .then(response => {
+                console.log(response.data);
+                this.switchToLogin();
+            });
+        },
+        loginAccount: function(){
+            axios.post("http://localhost:3000/api/user/login", {pseudo: this.nickname, password: this.password})
+            .then(response => {
+                console.log(response.data);
+            //stocker l'id, le token et le user name.
+
+            this.$router.push("/home");
+            });
         },
     }
 }

@@ -3,8 +3,14 @@ import { createStore } from 'vuex'
 // Create a new store instance.
 const store = createStore({
   state () {
-    return {
-      count: 0
+    
+  },
+  action: {
+    createAccount: ({commit}, userInfos) => {
+      commit;
+      console.log(userInfos);
+
+
     }
   },
   mutations: {

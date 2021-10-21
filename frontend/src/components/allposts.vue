@@ -1,53 +1,48 @@
-   
 <template>
-    <div>
-        <h4>{{ post.User.firstname }} {{ post.User.lastname }}</h4>
-        <p>posté le {{ post.createdday }}</p>
-    // ajouter un bouton suppression visible qu'a l'administrateur?//   
-    // ajouter le texte/ l'image du post//
-    // montrer tout les posts//     
-   
-            
+    <div class="allPosts">
+        <h2>Actuellement</h2>
+
+        <section class="post">
+                <div class="nicknamePost"> </div>
+                <div class="contentPost"></div>
+                <div class="filePost"></div>
+        </section>
+        
+    </div>
 </template>
+
 <script>
-import Comments from "@/components/Comments.vue"
-export default {
-    name: 'Posts',
-    components: {
-        Comments
-    },
-    props: {
-        posts: Array,
-        isAdmin: Boolean,
-        userId: Number
-    },
-    data() {
-        return {
-            comments: [],
-        }
-    },
-    //methods: {
-    //est ce qu'il faut déterminer le statut de l'user connecté (si il est administrateur ou pas) par rapport à ce post 
-                
-       // },
-        //supprimer le post 
-        //deletePost(postId) {
-            //const data = {
-               // userId: localStorage.getItem('userId')
-           // }
-       // },
-        //}
-        /* ajout d'un commentaire  */
-        //async CreateComment(commentId) {
-            //???//
-        //}
-        /* actualisation suite à la suppression du commentaire */
-        //async deleteComment(commentId) {
-            //this.comments = this.comments.filter((comment) => comment.id != commentId)
-       // }
-               
-        //  est ce qu'il faut faire le fetch de tous les commentaires d'un post ? //
-       // }        
-    //}
-}
+//import axios from 'axios';
+
 </script>
+
+
+<style scoped>
+h3{
+    margin: 4rem 0;
+}
+.allPosts{
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+.post{
+    width: 100%;
+    margin: auto;
+    height: auto;  
+}
+.nicknamePost{
+    border-radius: 25px 25px 0 0;
+    padding: 5px;
+    border-bottom: 1px solid red;
+    font-style: italic;
+}
+.contentPost{
+    background-color: #FFF;
+    padding: 3rem 1rem;
+    margin-bottom: 10px;
+}
+.filePost{
+    margin-bottom: 10px;
+}
+</style>

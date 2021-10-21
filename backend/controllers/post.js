@@ -8,11 +8,10 @@ const fs = require('fs'); // récupération du package fs de node.js qui gère l
 
 // POST
 module.exports.createPost = (req, res, next) => {
-    const postObject = JSON.parse(req.body.post); // extraction de l'objet JSON sous forme de chaîne de caractère
-    delete postObject._id; // suppression de l'id de postOject
-    const post = new Post({
-        ...postObject,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` // middleware mutler, on modifie l'URL de l'image, on le génère
+    //const postObject = JSON.parse(req.body.post); // extraction de l'objet JSON sous forme de chaîne de caractère
+    const post = Post.build({
+        content: req.body.content,
+        //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` // middleware mutler, on modifie l'URL de l'image, on le génère
     });
     post.save()
         .then(() => res.status(201).json({ message: 'Post créé !' }))
@@ -70,7 +69,7 @@ module.exports.getOnePost = (req, res, next) => {
 
 // GET
 module.exports.getAllPosts = (req, res, next) => {
-    Post.find() // récupération de la liste de tout les posts
+    Post.findAll({include: {model: User, attributes: ["pseudo"]}, order: [["id","DESC"]]}) // récupération de la liste de tout les posts
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };

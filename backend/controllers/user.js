@@ -19,7 +19,7 @@ exports.signup = (req, res, next) => {
                 });
                 user.save() // la méthode save enregistre l'utilisateur dans la base de donnée
                     .then(() => res.status(201).json({ message: ' Profil créé !' }))/* création de ressourse*/
-                    .catch(error => res.status(400).json({ message: ' Ce pseudo est déjà attribuée ! ' }));
+                    .catch(error => res.status(400).json({ message: ' Ce pseudo est déjà attribuée ! ', error: error.message }));
             })
             .catch(error => res.status(500).json({ error }));/* erreur server*/
         } 
@@ -28,21 +28,21 @@ exports.signup = (req, res, next) => {
 /*fonction pour connecter les utilisateurs existants de se connecter à l'application*/
 // LOGIN
 exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email }) /* pour trouver un utilisateur de la base de doonnées, qui est unique, pour qui l'adresse mail correspond à l'adresse mail envoyée dans la requête*/
+    User.findOne({where:{ pseudo: req.body.pseudo} }) /* pour trouver un utilisateur de la base de doonnées, qui est unique, pour qui l'adresse mail correspond à l'adresse mail envoyée dans la requête*/
         .then(user => {/* pour vérifier si on a récupérer un user ou non*/
             if (!user) { // si non
                 return res.status(401).json({ error: ' Utilisateur non trouvé !' });
-            }
+            }console.log(user.pseudo);
             bcrypt.compare(req.body.password, user.password) /* si oui, on compare le mot de passe envoyé par l'utilisateur qui essaie de se connecter avec le hash qui est enregistré*/
                 .then(valid => { // récéption d'un boolean
                     if (!valid) {
                         return res.status(401).json({ error: 'Mot de passe incorrect !' })
                     }
                     res.status(200).json({ // si il est valide on renvoie un objet json
-                        userId: user._id, // l'identifiant
+                        userId: user.id, // l'identifiant
                         token: jwt.sign( /* le token avec 3 arguments: les données que l'on veut encoder, la clé secrète pour l'encodage, la configuration (ici expiration)*/
-                            { userId: user._id },
-                            process.env.jwt_secret,
+                            { userId: user.id },
+                            "mysecret",
                             { expiresIn: '24h' }
                         )
                     });

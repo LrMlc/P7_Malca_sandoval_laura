@@ -11,19 +11,19 @@ const multer = require('../middlewares/multer-config');// récupération du midd
 
 /* rajout de middlewares sur les routes qu'on veut protéger*/
 // POST
-router.post('/', auth, multer, postCtrl.createPost); /* application de la logique métier createPost (controllers) à la route POST */
+router.post('/', multer, postCtrl.createPost); /* application de la logique métier createPost (controllers) à la route POST */
 
 // PUT
-router.put('/:id', auth, multer, postCtrl.modifyPost); /* application de la logique métier modifyPost (controllers) à la route PUT */
+router.put('/:id', multer, postCtrl.modifyPost); /* application de la logique métier modifyPost (controllers) à la route PUT */
 
 // DELETE
-router.delete('/:id', auth, postCtrl.deletePost); /* application de la logique métier deletePost (controllers) à la route DELETE */
+router.delete('/:id', postCtrl.deletePost); /* application de la logique métier deletePost (controllers) à la route DELETE */
 
 // GET 
-router.get('/:id', auth, postCtrl.getOnePost); /* application de la logique métier getOnePost (controllers) à la route GET */
+router.get('/:id', postCtrl.getOnePost); /* application de la logique métier getOnePost (controllers) à la route GET */
 
 // GET 
-router.get('/', auth, postCtrl.getAllPosts); /* application de la logique métier getAllPost (controllers) à la route GET */
+router.get('/', postCtrl.getAllPosts); /* application de la logique métier getAllPost (controllers) à la route GET */
 
 // EXPORT
 module.exports = router;

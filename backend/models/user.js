@@ -7,7 +7,7 @@ module.exports = db.define('User', {
     pseudo: {
         type: DataTypes.STRING(25), unique: true, allowNull: false},
     password: {
-        type: DataTypes.STRING(25),
+        type: DataTypes.STRING(100),
         allowNull: false
     }
     //admin ???

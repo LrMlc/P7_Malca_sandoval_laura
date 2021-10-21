@@ -1,19 +1,22 @@
 <template>
-<div>
-  <headercomp /> <!--- router-link to? router-view? --->
+<div><!--- router-link to? router-view? --->
   <navcomp />
+  <createpost/>
+  <allposts/>
 </div>
 </template>
 
 <script>
-import headercomp from '@/components/header.vue';
 import navcomp from '@/components/nav.vue';
+import createpost from '@/components/createpost.vue';
+import allposts from '@/components/allposts.vue';
 
 export default {
   name: 'Home',
   components: {
-    headercomp,
-    navcomp
+    navcomp,
+    createpost,
+    allposts
   }
 }
 </script>
