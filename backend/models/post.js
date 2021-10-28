@@ -9,6 +9,6 @@ module.exports = db.define('post', {
     },
     file: {
         type: DataTypes.STRING(250),
-        allowNull: false,
+        allowNull: true,
     }
 });

@@ -11,7 +11,7 @@ const multer = require('../middlewares/multer-config');// récupération du midd
 
 /* rajout de middlewares sur les routes qu'on veut protéger*/
 // POST
-router.post('/', multer, postCtrl.createPost); /* application de la logique métier createPost (controllers) à la route POST */
+router.post('/', auth, multer, postCtrl.createPost); /* application de la logique métier createPost (controllers) à la route POST */
 
 // PUT
 router.put('/:id', multer, postCtrl.modifyPost); /* application de la logique métier modifyPost (controllers) à la route PUT */

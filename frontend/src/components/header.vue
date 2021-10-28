@@ -14,6 +14,6 @@ export default {
 </script>
 <style scoped>
 header, img {
-    margin: 2rem;
+    width: 200px;
 }
 </style>

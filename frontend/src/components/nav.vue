@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <router-link to=".views/login.vue"><i class="fas fa-power-off"></i>Déconnexion</router-link>
+        <router-link to="/login"><i class="fas fa-power-off"></i>Déconnexion</router-link>
     </nav>   
 </template>
 
@@ -13,8 +13,18 @@ export default {
 <style scoped>
 nav{
   display: flex;
-  align-items: right;
+  justify-content: right;
+  padding: 20px;
   height: 10px;
-  border: 1px solid #ff6666;
+  border: 5px solid #851505;
+  background-color: #CAC8C7;
+  margin-bottom: 80px;
+ 
+}
+a{
+ text-decoration: none;
+ color: #851505;
+ cursor: pointer;
+ font-weight: 800;
 }
 </style>

@@ -8,9 +8,11 @@ const fs = require('fs'); // récupération du package fs de node.js qui gère l
 
 // POST
 module.exports.createPost = (req, res, next) => {
+    console.log(req.currentUser);
     //const postObject = JSON.parse(req.body.post); // extraction de l'objet JSON sous forme de chaîne de caractère
     const post = Post.build({
         content: req.body.content,
+        UserId: req.currentUser.userId,
         //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` // middleware mutler, on modifie l'URL de l'image, on le génère
     });
     post.save()

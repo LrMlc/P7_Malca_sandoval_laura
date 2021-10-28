@@ -1,48 +1,75 @@
 <template>
-    <div class="allPosts">
-        <h2>Actuellement</h2>
-
-        <section class="post">
-                <div class="nicknamePost"> </div>
-                <div class="contentPost"></div>
-                <div class="filePost"></div>
-        </section>
-        
-    </div>
+  <section class="allPosts">
+    <h2>Actuellement</h2>
+    
+    <article v-for="post in posts" :key="post.id" class="post">
+      
+      <div class="nicknamePost">{{ post.User.pseudo }}</div>
+      <div class="contentPost">{{ post.content }}</div>
+      <div class="filePost"></div>
+    </article>
+  </section>
 </template>
 
 <script>
-//import axios from 'axios';
+import axios from "axios";
+export default {
+  name: "allposts",
+  data() {
+    return {
+      posts: [],
+    };
+  },
+  methods: {
+    getAllPosts: function () {
+      axios.get("http://localhost:3000/api/post/").then((res) => {
+        this.posts = res.data;
+      });
+    },
+  },
+  mounted(){
+      this.getAllPosts();
 
+  }
+};
 </script>
 
-
 <style scoped>
-h3{
-    margin: 4rem 0;
+h3 {
+  margin: 4rem 0;
 }
-.allPosts{
-    text-align: center;
-    width: 80%;
-    margin: auto;
+.allPosts {
+  text-align: center;
+  border: 5px solid #851505;
+  color: #851505;
+  background-color: white;
+  border-radius: 20px;
+  width: 800px;
+  margin: auto;
+  padding: 20px;
+  margin-bottom: 40px;
 }
-.post{
-    width: 100%;
-    margin: auto;
-    height: auto;  
+article.post{
+  border-radius: 2px solid #851505;
 }
-.nicknamePost{
-    border-radius: 25px 25px 0 0;
-    padding: 5px;
-    border-bottom: 1px solid red;
-    font-style: italic;
+.post {
+  width: 100%;
+  margin: auto;
+  height: auto;
 }
-.contentPost{
-    background-color: #FFF;
-    padding: 3rem 1rem;
-    margin-bottom: 10px;
+.nicknamePost {
+  border-radius: 25px 25px 0 0;
+  padding: 5px;
+  text-align: left;
+  font-weight: bold;
 }
-.filePost{
-    margin-bottom: 10px;
+.contentPost {
+  background-color: #fff;
+  color: #262A77;
+  padding: 20px;
+  margin-bottom: 10px;
+}
+.filePost {
+  margin-bottom: 10px;
 }
 </style>
