@@ -1,6 +1,6 @@
 <template>
-<div><!--- router-link to? router-view? --->
-  <navcomp />
+<div>
+  <navcomp/>
   <createpost/>
   <allposts/>
 </div>

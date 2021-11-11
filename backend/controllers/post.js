@@ -61,7 +61,7 @@ module.exports.deletePost = (req, res, next) => {
 
 // GET
 module.exports.getOnePost = (req, res, next) => {
-    Post.findOne({ _id: req.params.id }) // récupération d'un seul post
+    Post.findOne({include: {model: User, attributes: ["pseudo"]},where:{ id: req.params.id }}) // récupération d'un seul post
         .then((post) => res.status(200).json(post))
         .catch(error => {
             console.log(error);

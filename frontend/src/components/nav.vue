@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <router-link to="/login"><i class="fas fa-power-off"></i>Déconnexion</router-link>
+        <router-link to="/"><i class="fas fa-power-off"></i>Déconnexion</router-link>
     </nav>   
 </template>
 

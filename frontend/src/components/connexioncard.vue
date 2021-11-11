@@ -6,15 +6,13 @@
       Tu n'as pas de compte?<span
         class="card-create-account"
         @click="switchToCreateAccount()"
-        >Créer un compte</span
-      >
+        >Créer un compte</span>
     </p>
     <p class="card-subtitle" v-else>
       Tu as déjà un compte<span
         class="card-create-account"
         @click="switchToLogin()"
-        >Se connecter</span
-      >
+        >Se connecter</span>
     </p>
     <div class="login-form">
       <input

@@ -1,12 +1,13 @@
 <template>
   <section class="allPosts">
     <h2>Actuellement</h2>
-    
+
     <article v-for="post in posts" :key="post.id" class="post">
-      
-      <div class="nicknamePost">{{ post.User.pseudo }}</div>
-      <div class="contentPost">{{ post.content }}</div>
-      <div class="filePost"></div>
+      <router-link :to="{name:'post', params:{postId:post.id}}">
+        <div class="nicknamePost">{{ post.User.pseudo }}</div>
+        <div class="contentPost">{{ post.content }}</div>
+        <div class="filePost"></div>
+      </router-link>
     </article>
   </section>
 </template>
@@ -27,10 +28,9 @@ export default {
       });
     },
   },
-  mounted(){
-      this.getAllPosts();
-
-  }
+  mounted() {
+    this.getAllPosts();
+  },
 };
 </script>
 
@@ -49,8 +49,9 @@ h3 {
   padding: 20px;
   margin-bottom: 40px;
 }
-article.post{
+article.post {
   border-radius: 2px solid #851505;
+  cursor: pointer;
 }
 .post {
   width: 100%;
@@ -65,7 +66,7 @@ article.post{
 }
 .contentPost {
   background-color: #fff;
-  color: #262A77;
+  color: #262a77;
   padding: 20px;
   margin-bottom: 10px;
 }

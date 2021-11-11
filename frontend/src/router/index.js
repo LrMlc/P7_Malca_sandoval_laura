@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import login from '@/views/login.vue'
 import home from '@/views/home.vue'
+import post from '@/views/post.vue'
 
 const routes = [
   { //ma page par défaut
@@ -12,6 +13,11 @@ const routes = [
     name:"login",
     path: '/',
     component: login
+  },
+  {
+    name:"post",
+    path:'/post/:postId',
+    component: post
   }
 ]
 

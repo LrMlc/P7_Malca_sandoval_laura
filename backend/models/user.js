@@ -11,4 +11,7 @@ module.exports = db.define('User', {
         allowNull: false
     }
     //admin ???
+    isAdmin: {
+        type: DataTypes.
+    }
 });
