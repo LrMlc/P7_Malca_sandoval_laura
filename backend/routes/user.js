@@ -7,6 +7,7 @@ const userCTRL = require('../controllers/user'); // récupération du controleur
 /*création de 2 routes*/
 router.post('/signup', userCTRL.signup); /* Post car le frontend va aussi envoyer des informations, l'adresse mail et le mot de passe*/
 router.post('/login', userCTRL.login);
+//router.delete('/delete/:id', auth, userCtrl.delete);
 
 // EXPORT
 module.exports = router;

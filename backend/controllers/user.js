@@ -1,7 +1,7 @@
 // IMPORTATIONS
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const User = require('../models/User'); 
+const User = require('../models/user'); 
 
 // LOGIQUE METIER
 /* fonction asynchrone pour l'enregistrement de nouveaux utilisateurs*/
@@ -10,7 +10,7 @@ exports.signup = (req, res, next) => {
     if (req.body.password.length < 8){
         return res.status(400).json({ message: "Votre mot de passe doit contenir au moins 8 caractères ! " })
     } else {
-        bcrypt.hash(req.body.password, 10) // hasahge du mot de passe, l'algorithme s'execute 10 pour crypter le mot de passe
+        bcrypt.hash(req.body.password, 10) // hashage du mot de passe, l'algorithme s'execute 10 pour crypter le mot de passe
             .then(hash => { // récupération du hash du mot de passe
                 
                 const user = new User({ // création d'un nouvelle utilisateur
@@ -40,8 +40,9 @@ exports.login = (req, res, next) => {
                     }
                     res.status(200).json({ // si il est valide on renvoie un objet json
                         userId: user.id, // l'identifiant
+                        isAdmin: user.isAdmin,
                         token: jwt.sign( /* le token avec 3 arguments: les données que l'on veut encoder, la clé secrète pour l'encodage, la configuration (ici expiration)*/
-                            { userId: user.id },
+                            { userId: user.id, isAdmin: user.isAdmin },
                             "mysecret",
                             { expiresIn: '24h' }
                         )

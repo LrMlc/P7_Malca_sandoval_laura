@@ -5,6 +5,9 @@
     <div class="contentPost">{{ post.content }}</div>
     <div class="filePost"></div>
   </article>
+  <div>
+    <comments />
+</div>
 <div class="return">
   <button>
     <router-link to="/home"><i class="fas fa-undo-alt"></i>Page précédente</router-link>
@@ -14,7 +17,9 @@
 </template>
 <script>
 import axios from "axios";
+import comments from '../components/comments.vue';
 export default {
+  components: { comments },
   name: 'post',
   data() {
     return {

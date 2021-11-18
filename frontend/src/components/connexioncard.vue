@@ -104,6 +104,8 @@ export default {
           console.log(response.data);
           //stocker l'id, le token et le user name.
           localStorage.setItem("token", response.data.token);
+          localStorage.setItem("userId", response.data.userId);
+          localStorage.setItem("isAdmin", response.data.isAdmin);
           this.$router.push("/home");
         });
     },

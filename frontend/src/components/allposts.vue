@@ -7,6 +7,9 @@
         <div class="nicknamePost">{{ post.User.pseudo }}</div>
         <div class="contentPost">{{ post.content }}</div>
         <div class="filePost"></div>
+        <button
+          class="deleteComment" @click="deletePost(post.id)" v-if="this.userId == post.UserId || this.isAdmin == 'true'">
+        </button>
       </router-link>
     </article>
   </section>
@@ -19,6 +22,8 @@ export default {
   data() {
     return {
       posts: [],
+      isAdmin: false,
+      userId: -1
     };
   },
   methods: {
@@ -29,6 +34,8 @@ export default {
     },
   },
   mounted() {
+    this.isAdmin=localStorage.getItem("isAdmin");
+    this.userId=localStorage.getItem("userId");
     this.getAllPosts();
   },
 };

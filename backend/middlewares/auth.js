@@ -7,6 +7,7 @@ module.exports = (req, res, next) => {
       
         const decodedToken = jwt.verify(token, "mysecret");/* on décode le token*/
         req.currentUser=decodedToken;
+        req.isAdmin = decodedToken.isAdmin;  //??
             next();
     } catch (error) {
         console.log(error);
