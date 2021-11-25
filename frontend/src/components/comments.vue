@@ -35,9 +35,45 @@ export default {
       isAdmin: false,
     };
   },
-  //createComment()
-  //deleteComment()
-};
+
+methods:{
+  getAllComments() {
+      axios.get("http://localhost:3000/api/comments/").then((res) => {
+        this.comments = res.data;
+      });
+    },
+  
+
+createComment() {
+            axios.post(`http://localhost:3000/api/comment/${idPost}/comment`, 
+            )
+            .then(res => {
+                this.comment = res.data;
+                this.getAllComments();
+            })
+            .catch(error => {
+                console.log("Le commentaire n'a pas été crée /" + error)
+            })
+        },
+ deleteComments() {
+            axios.delete("http://localhost:3000/api/post/" , 
+            )
+            .then(res => {
+                if (res) {
+                    window.location.reload()
+                }
+            })
+            .catch(error => {
+                console.log("Le commentaire n'a pas été supprimé" + error )
+            }) 
+        }},
+
+mounted() {
+    this.isAdmin=localStorage.getItem("isAdmin");
+    this.userId=localStorage.getItem("userId");
+    this.getAllComments();
+  },
+}
 </script>
 
 <style scoped>

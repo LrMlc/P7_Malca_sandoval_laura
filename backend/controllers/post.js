@@ -46,14 +46,19 @@ module.exports.modifyPost = (req, res, next) => {
 
 // DELETE
 module.exports.deletePost = (req, res, next) => {
-    Post.findOne({ _id: req.params.id }) // on trouve l'objet dans la base de données
+    Post.findOne() // on trouve l'objet dans la base de données
         .then(post => { // quand on le trouve on extrait le nom du fichier à supprimer
+            if(post.UserId === req.currentUser.userId || req.currentUser.isAdmin)
+            {
             const filename = post.imageUrl.split('/images/')[1];
             fs.unlink(`images/${filename}`, () => { // on le supprime
                 Post.deleteOne({ _id: req.params.id }) // on fait la suppression de l'objet dans la base en renvoyant les réponses
                     .then(post => res.status(200).json({ message: 'Post supprimé' }))
                     .catch(error => res.status(404).json({ error }));
-            });
+            });}
+            else{
+                res.status(401).json({error:"vous n'avez pas le droit de supprimer ce post"})
+            }
         })
         .catch(error => res.status(500).json({ error }));
 };
