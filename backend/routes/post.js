@@ -17,13 +17,13 @@ router.post('/', auth, multer, postCtrl.createPost); /* application de la logiqu
 router.put('/:id', multer, postCtrl.modifyPost); /* application de la logique métier modifyPost (controllers) à la route PUT */
 
 // DELETE
-router.delete('/:id', postCtrl.deletePost); /* application de la logique métier deletePost (controllers) à la route DELETE */
+router.delete('/:id',auth, multer, postCtrl.deletePost); /* application de la logique métier deletePost (controllers) à la route DELETE */
 
 // GET 
-router.get('/:id', postCtrl.getOnePost); /* application de la logique métier getOnePost (controllers) à la route GET */
+router.get('/:id', auth, multer, postCtrl.getOnePost); /* application de la logique métier getOnePost (controllers) à la route GET */
 
 // GET 
-router.get('/', postCtrl.getAllPosts); /* application de la logique métier getAllPost (controllers) à la route GET */
+router.get('/', auth, multer, postCtrl.getAllPosts); /* application de la logique métier getAllPost (controllers) à la route GET */
 
 // EXPORT
 module.exports = router;

@@ -11,8 +11,8 @@ const multer = require('../middlewares/multer-config');// récupération du midd
 
 /* rajout de middlewares sur les routes qu'on veut protéger*/
 //POST
-router.post('/', auth, multer, commentsCtrl.createComment); /* application de la logique métier createComments (controllers) ) la route POST */
-router.delete('/', auth, multer, commentsCtrl.deleteComment); /* application de la ligique métier deleteComments (controllers) à la route DELETE */
-
+router.post('/:postid', auth, multer, commentsCtrl.createComment); /* application de la logique métier createComments (controllers) ) la route POST */
+router.delete('/:id', auth, multer, commentsCtrl.deleteComment); /* application de la ligique métier deleteComments (controllers) à la route DELETE */
+router.get('/:id', auth, multer, commentsCtrl.getCommentsByPost); 
 // EXPORT
 module.exports = router;

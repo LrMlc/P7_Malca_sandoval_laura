@@ -1,7 +1,8 @@
 <template>
   <div class="allComments">
     <h3 class="titleComments">Commentaires :</h3>
-    <div class="comments" v-for="comment in comments" :key="comment">
+    <div class="comments" v-for="comment in comments" :key="comment.id">
+
       <div class="commentContent">{{ comment.content }}</div>
       <div class="commentPseudo"><strong>{{ comment.nickname }}</strong></div>
         <button
@@ -10,7 +11,7 @@
     </div>
       
       <div class="createComments">
-            <form class="formComment" @submit.prevent="createComment">
+            <form @submit.prevent="createComment" class="formComment" >
 
                 <div class="formNewComments">
                     <label class="titleNewComment" for="newComment">Un commentaire ?</label> <br>
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 export default {
   name: "Post",
   data() {
@@ -36,31 +37,29 @@ export default {
     };
   },
 
-methods:{
-  getAllComments() {
-      axios.get("http://localhost:3000/api/comments/").then((res) => {
-        this.comments = res.data;
-      });
-    },
-  
+methods:{  
 
 createComment() {
-            axios.post(`http://localhost:3000/api/comment/${idPost}/comment`, 
+            axios.post(`http://localhost:3000/api/comment/${this.$route.params.postId}`, 
             )
             .then(res => {
                 this.comment = res.data;
-                this.getAllComments();
+                this.getAllCommentsByPost();
             })
             .catch(error => {
                 console.log("Le commentaire n'a pas été crée /" + error)
             })
         },
+
+getAllCommentsByPost(){}, //récupération des commentaires du bon post 
+
+
  deleteComments() {
             axios.delete("http://localhost:3000/api/post/" , 
             )
             .then(res => {
                 if (res) {
-                    window.location.reload()
+                   this.getAllCommentsByPost();
                 }
             })
             .catch(error => {
@@ -71,7 +70,8 @@ createComment() {
 mounted() {
     this.isAdmin=localStorage.getItem("isAdmin");
     this.userId=localStorage.getItem("userId");
-    this.getAllComments();
+    this.getAllCommentsByPost();
+    alert(this.$route.params.postId);
   },
 }
 </script>
