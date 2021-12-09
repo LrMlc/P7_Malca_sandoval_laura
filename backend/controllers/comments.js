@@ -3,24 +3,23 @@
 const { json } = require('body-parser');
 const Comments = require('../models/comments'); // récupération du model
 const fs = require('fs'); // récupération du package fs de node.js qui gère les fichiers importés
-
+const User = require('../models/user');
 // POST
 module.exports.createComment = (req, res, next) => {
-        const comment = new Comment({
+        const comment = Comments.build({
         content: req.body.content,
-        UserId: req.currentUser.userId,        
+        UserId: req.currentUser.userId,
+        postId: req.params.postid,        
     });
     comment.save()
         .then(() => res.status(201).json({ message: 'Commentaire envoyé !' }))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(400).json({ error: error.message }));
         //rajouter dans la route un post id et dans le create comment, corriger ça
 };
 
-
-
 // GET
 module.exports.getCommentsByPost = (req, res, next) => {
-    Comments.findAll({ include: { model: User, attributes: ["pseudo"] }, order: [["id", "DESC"]],  where: { id: req.params.id } }) // récupération de la liste de tout les comments
+    Comments.findAll({ include: { model: User, attributes: ["pseudo"] }, order: [["id", "DESC"]],  where: { postId: req.params.id } }) // récupération de la liste de tout les comments
         .then(comments => res.status(200).json(comments))
         .catch(error => res.status(400).json({ error }));
 };

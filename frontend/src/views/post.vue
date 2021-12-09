@@ -8,6 +8,7 @@
   <div>
     <comments />
 </div>
+<div><button class="deletePost" @click="this.deletePost(post.id)" v-if="userId == post.UserId || admin == 1"></button></div>
 <div class="return">
   <button>
     <router-link to="/home"><i class="fas fa-undo-alt"></i>Page précédente</router-link>
@@ -30,11 +31,24 @@ export default {
     getOnePost: function () {
       axios.get("http://localhost:3000/api/post/"+ this.$route.params.postId).then((res) => {
         this.post = res.data;
-        console.log(res.data);
       });
 
     },
   },
+  deletePost(idPost) {
+            const token = localStorage.getItem('token')
+            //const idPost = this.$route.params.id
+            axios.delete("http://localhost:3000/api/post/" + idPost,  
+            )
+            .then(res => {
+                if (res) {
+                    this.getAllPosts();
+                }
+            })
+            .catch(error => {
+                console.log("Le post n'a pas été supprimé" + error )
+            }) 
+        },
   mounted() {
     this.getOnePost();
   },

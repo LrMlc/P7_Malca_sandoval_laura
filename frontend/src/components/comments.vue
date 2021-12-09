@@ -15,7 +15,7 @@
 
                 <div class="formNewComments">
                     <label class="titleNewComment" for="newComment">Un commentaire ?</label> <br>
-                    <textarea name="newComment" class="contentNewComment" placeholder="voulez-vous rajouter quelque chose?" required></textarea> <br>
+                    <textarea v-model="content" name="newComment" class="contentNewComment" placeholder="voulez-vous rajouter quelque chose?" required></textarea> <br>
                     <button class="addComment" type="submit">Commenter</button>
                 </div>
             </form>
@@ -40,10 +40,13 @@ export default {
 methods:{  
 
 createComment() {
-            axios.post(`http://localhost:3000/api/comment/${this.$route.params.postId}`, 
+            axios.post("http://localhost:3000/api/comments/"+ this.$route.params.postId, 
+            {
+              content:this.content
+            }
             )
-            .then(res => {
-                this.comment = res.data;
+            .then(()=> {
+                this.content = "";
                 this.getAllCommentsByPost();
             })
             .catch(error => {
@@ -51,11 +54,16 @@ createComment() {
             })
         },
 
-getAllCommentsByPost(){}, //récupération des commentaires du bon post 
+getAllCommentsByPost(){
+  axios.get("http://localhost:3000/api/comments/"+ this.$route.params.postId)
+  .then((res=> {
+    this.comments =res.data;
+    console.log(res.data);
+  }))
+},
 
-
- deleteComments() {
-            axios.delete("http://localhost:3000/api/post/" , 
+ deleteComments(commentId) {
+            axios.delete("http://localhost:3000/api/comments/" + commentId , 
             )
             .then(res => {
                 if (res) {

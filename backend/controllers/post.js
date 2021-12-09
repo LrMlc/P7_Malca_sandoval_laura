@@ -2,7 +2,6 @@
 
 const { json } = require('body-parser');
 const Post = require('../models/post'); // récupération du model
-const Comments = require('../models/comments'); // ?
 const User = require('../models/user'); //?
 const fs = require('fs'); // récupération du package fs de node.js qui gère les fichiers importés
 

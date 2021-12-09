@@ -7,7 +7,7 @@
         <div class="nicknamePost">{{ post.User.pseudo }}</div>
         <div class="contentPost">{{ post.content }}</div>
         <div class="filePost"></div>
-        <div><button class="deletePost" @click="this.deletePost(post.id)" v-if="userId == post.UserId || admin == 1"></button></div>
+        
       </router-link>
     </article>
   </section>
@@ -29,30 +29,15 @@ export default {
       axios.get("http://localhost:3000/api/post/").then((res) => {
         this.posts = res.data;
       });
-    },
-    deletePost(idPost) {
-            const token = localStorage.getItem('token')
-            //const idPost = this.$route.params.id
-            axios.delete("http://localhost:3000/api/post/" + idPost,  
-            )
-            .then(res => {
-                if (res) {
-                    this.getAllPosts();
-                }
-            })
-            .catch(error => {
-                console.log("Le post n'a pas été supprimé" + error )
-            }) 
-        }
-  },
+    }},
+    
   mounted() {
     this.isAdmin=localStorage.getItem("isAdmin");
     this.userId=localStorage.getItem("userId");
     this.getAllPosts();
   },
-};
+}
 
-  
 </script>
 
 <style scoped>
