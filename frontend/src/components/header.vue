@@ -15,5 +15,6 @@ export default {
 <style scoped>
 header, img {
     width: 200px;
+    margin: auto;
 }
 </style>

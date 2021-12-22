@@ -46,7 +46,7 @@ h3 {
 }
 .allPosts {
   text-align: center;
-  border: 5px solid #851505;
+  border: 3px solid #851505;
   color: #851505;
   background-color: white;
   border-radius: 20px;

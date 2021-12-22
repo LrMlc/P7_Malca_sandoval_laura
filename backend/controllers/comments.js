@@ -31,7 +31,7 @@ module.exports.deleteComment = (req, res, next) => {
         .then((comment) => {
 
             if (post.UserId === req.currentUser.userId || req.currentUser.isAdmin) {
-                Comments.deleteOne(comment.UserId === UserId || req.isAdmin)
+                Comments.destroy({ where: { id: req.params.id } })
                 .then(() => 
                 {
                     res.status(200).json({ message: 'Commentaire supprimé!' });// on trouve l'objet dans la base de données

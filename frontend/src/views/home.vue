@@ -1,8 +1,8 @@
 <template>
 <div>
   <navcomp/>
-  <createpost/>
-  <allposts/>
+  <createpost @new-post="onNewPost()"/>
+  <allposts ref="allPosts"/>
 </div>
 </template>
 
@@ -17,7 +17,13 @@ export default {
     navcomp,
     createpost,
     allposts
+  },
+  methods:{
+    onNewPost(){
+      this.$refs.allPosts.getAllPosts();
+    }
   }
+
 }
 </script>
 

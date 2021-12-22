@@ -1,6 +1,7 @@
 // IMPORTATIONS
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const user = require('../models/user');
 const User = require('../models/user'); 
 
 // LOGIQUE METIER
@@ -58,3 +59,19 @@ exports.login = (req, res, next) => {
             res.status(500).json({ error: error.message }) // présente un problème de connexion à la base de données
         });
 };
+
+// Supression du profil Groupomania
+module.exports.deleteUser = (req, res, next) => {
+                if (req.params.id === req.currentUser.userId || req.currentUser.isAdmin) {
+                User.destroy({where: {id: req.params.id}})
+                .then(() => 
+                {
+                    res.status(200).json({ message: 'Profil supprimé!' });// on trouve l'objet dans la base de données
+                }
+                ).catch((error) => {
+                    res.status(400).json({ error: error });
+                }
+                );
+            }
+    };
+

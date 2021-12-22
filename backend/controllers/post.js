@@ -51,7 +51,7 @@ module.exports.deletePost = (req, res, next) => {
             {
             const filename = post.imageUrl.split('/images/')[1];
             fs.unlink(`images/${filename}`, () => { // on le supprime
-                Post.deleteOne({ _id: req.params.id }) // on fait la suppression de l'objet dans la base en renvoyant les réponses
+                Post.destroy({ where:{id: req.params.id }}) // on fait la suppression de l'objet dans la base en renvoyant les réponses
                     .then(post => res.status(200).json({ message: 'Post supprimé' }))
                     .catch(error => res.status(404).json({ error }));
             });}

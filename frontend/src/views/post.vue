@@ -8,9 +8,9 @@
   <div>
     <comments />
 </div>
-<div><button class="deletePost" @click="this.deletePost(post.id)" v-if="userId == post.UserId || admin == 1"></button></div>
+<div><button class="deletePost" placeholder="supprimer le post?" @click="deletePost(post.id)" v-if="userId == post.UserId || admin == 1"> X </button></div>
 <div class="return">
-  <button>
+  <button class="return">
     <router-link to="/home"><i class="fas fa-undo-alt"></i>Page précédente</router-link>
   </button>
 </div>
@@ -24,7 +24,9 @@ export default {
   name: 'post',
   data() {
     return {
-      post: {User: {pseudo:""}, content:""}
+      post: {User: {pseudo:""}, content:""},
+      userId: -1,
+      isAdmin: false,
     };
   },
   methods: {
@@ -34,10 +36,7 @@ export default {
       });
 
     },
-  },
-  deletePost(idPost) {
-            const token = localStorage.getItem('token')
-            //const idPost = this.$route.params.id
+    deletePost(idPost) {
             axios.delete("http://localhost:3000/api/post/" + idPost,  
             )
             .then(res => {
@@ -49,8 +48,12 @@ export default {
                 console.log("Le post n'a pas été supprimé" + error )
             }) 
         },
+  },
+  
   mounted() {
     this.getOnePost();
+    this.isAdmin=localStorage.getItem("isAdmin")=="true";
+    this.userId=localStorage.getItem("userId");
   },
 };
 </script>
@@ -87,7 +90,7 @@ export default {
 .filePost {
   margin-bottom: 10px;
 }
-button {
+button .retun{
   padding: 10px;
   width: 200px;
   background-color: #851505;
@@ -95,5 +98,13 @@ button {
   color: white;
   border-radius: 20px;
   cursor: pointer;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
+button .deletePost{
+  color: white;
+  background-color: #851505;
+
+}
+
 </style>

@@ -1,6 +1,7 @@
 <template>
     <nav>
-        <router-link to="/"><i class="fas fa-power-off"></i>Déconnexion</router-link>
+      <div class="box-profile"><router-link to="profil">Profil</router-link></div>
+      <div class="box-deconnexion"><router-link to="/"><i class="fas fa-power-off"></i>Déconnexion</router-link></div>
     </nav>   
 </template>
 
@@ -13,7 +14,8 @@ export default {
 <style scoped>
 nav{
   display: flex;
-  justify-content: right;
+  flex-direction: row;
+  justify-content: space-around;
   padding: 20px;
   height: 10px;
   border: 5px solid #851505;

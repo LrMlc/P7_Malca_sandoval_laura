@@ -11,10 +11,9 @@
     </div>
     <div class="filePost">
       <label for="image">
-        <input class="imagePost" type="file" name="image" ref="image" /> <br />
+        <input class="imagePost" type="file" name="image" ref="image" /> <br /> 
       </label>
     </div>
-
     <button @click="createPost()" class="submit">Publier</button>
   </div>
 </template>
@@ -36,6 +35,7 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
+          this.$emit("newPost");
         })
       .catch(error =>
       {

@@ -106,6 +106,7 @@ export default {
           localStorage.setItem("token", response.data.token);
           localStorage.setItem("userId", response.data.userId);
           localStorage.setItem("isAdmin", response.data.isAdmin);
+          localStorage.setItem("nickname", this.nickname);
           this.$router.push("/home");
         });
     },
@@ -120,6 +121,7 @@ export default {
   background: white;
   border-radius: 16px;
   padding: 32px;
+  margin: auto;
 }
 .card-title {
   text-align: center;
@@ -137,9 +139,10 @@ button {
   font-weight: 800;
   font-size: 15px;
   border: none;
-  width: 100%;
+  width: 200px;
   padding: 16px;
   transition: 0.4s background-color;
+  margin: 30px;
 }
 .card-create-account {
   color: #2196f3;
