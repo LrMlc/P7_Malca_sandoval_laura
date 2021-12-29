@@ -29,5 +29,6 @@ Clonez ce projet depuis GitHub
     npm i sequelize-cli
     npx sequelize-cli db:create
     node server.js
+    npm run dev ou npm run start
 
 - Ouvrir un navigateur: http://localhost:8080
