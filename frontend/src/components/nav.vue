@@ -6,6 +6,7 @@
 </template>
 
 <script>
+/*src="https://kit.fontawesome.com/113b72d011.js" crossorigin="anonymous"*/
 export default {
   name: 'nav-comp'
 }
@@ -16,9 +17,12 @@ nav{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  padding: 20px;
+  padding-top: 15px;
+  padding-bottom: 25px;
   height: 10px;
-  border: 5px solid #851505;
+  border: 1px solid black;
+  border-radius: 20px;
+  box-shadow: inset 0 0 20px;
   background-color: #CAC8C7;
   margin-bottom: 80px;
  

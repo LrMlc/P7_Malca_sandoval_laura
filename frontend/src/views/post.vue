@@ -3,7 +3,7 @@
   <article class="post">
     <div class="nicknamePost">{{ post.User.pseudo }}</div>
     <div class="contentPost">{{ post.content }}</div>
-    <div class="filePost"></div>
+    <img v-if="post.file" :src="post.file" class="filePost"/>
   </article>
   <div>
     <comments />
@@ -61,7 +61,8 @@ export default {
 
 .get-one-post {
   text-align: center;
-  border: 5px solid #851505;
+  border: 1px solid black;
+  box-shadow: inset 0 0 20px black;
   color: #851505;
   background-color: white;
   border-radius: 20px;
@@ -90,7 +91,7 @@ export default {
 .filePost {
   margin-bottom: 10px;
 }
-button .retun{
+button.retun{
   padding: 10px;
   width: 200px;
   background-color: #851505;

@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 import headercomp from '@/components/header.vue';
 
 

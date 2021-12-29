@@ -37,7 +37,7 @@ app.use(express.json());/* middleware qui permet de reconnaitre l'objet requête
 app.use('/api/post', postRoutes);
 app.use('/api/user', userRoutes);
 app.use('/api/comments', commentsRoutes);
-app.use('/images', express.static(path.join(__dirname, 'images'))); /* cette requête sert à tourver une image dans le dossier statique /image */
+app.use('/images', express.static(path.join(__dirname, 'files'))); /* cette requête sert à tourver une image dans le dossier statique /image */
 app.use(helmet());// HELMET
 
 // EXPORT SERVER

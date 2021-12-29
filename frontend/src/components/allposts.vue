@@ -6,7 +6,7 @@
       <router-link :to="{name:'post', params:{postId:post.id}}">
         <div class="nicknamePost">{{ post.User.pseudo }}</div>
         <div class="contentPost">{{ post.content }}</div>
-        <div class="filePost"></div>
+        <img v-if="post.file" :src="post.file" class="filePost"/>
         
       </router-link>
     </article>
@@ -46,14 +46,15 @@ h3 {
 }
 .allPosts {
   text-align: center;
-  border: 3px solid #851505;
-  color: #851505;
   background-color: white;
+  color: #851505;
   border-radius: 20px;
+  border: 1px solid black;
   width: 800px;
   margin: auto;
   padding: 20px;
   margin-bottom: 40px;
+  box-shadow: inset 0 0 20px black;
 }
 article.post {
   border-radius: 2px solid #851505;
@@ -75,6 +76,7 @@ article.post {
   color: #262a77;
   padding: 20px;
   margin-bottom: 10px;
+  text-decoration: none;
 }
 .filePost {
   margin-bottom: 10px;

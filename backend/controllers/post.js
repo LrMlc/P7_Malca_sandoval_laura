@@ -12,6 +12,7 @@ module.exports.createPost = (req, res, next) => {
     const post = Post.build({
         content: req.body.content,
         UserId: req.currentUser.userId,
+        file: req.file? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: "" //a lire comme condition
         //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` // middleware mutler, on modifie l'URL de l'image, on le génère
     });
     post.save()

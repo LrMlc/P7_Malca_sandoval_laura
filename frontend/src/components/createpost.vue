@@ -11,7 +11,7 @@
     </div>
     <div class="filePost">
       <label for="image">
-        <input class="imagePost" type="file" name="image" ref="image" /> <br /> 
+        <input class="imagePost" type="file" name="file" @change="selectFile($event)" /> <br />
       </label>
     </div>
     <button @click="createPost()" class="submit">Publier</button>
@@ -25,14 +25,19 @@ export default {
   data() {
     return {
       content: "",
+      file: '',
     };
   },
   methods: {
+    selectFile(event){
+      this.file=event.target.files[0];
+    },
     createPost: function () {
+      let data=new FormData();
+      data.append("content",this.content);
+      data.append("file", this.file);
       axios
-        .post("http://localhost:3000/api/post/", {
-          content: this.content,
-        })
+        .post("http://localhost:3000/api/post/", data)
         .then((response) => {
           console.log(response.data);
           this.$emit("newPost");
@@ -49,12 +54,13 @@ export default {
 <style scoped>
 .createPost {
   text-align: center;
-  border: 5px solid #851505;
+  box-shadow: inset 0 0 20px;
+  border: 1px solid black;
   background-color: white;
   border-radius: 20px;
-  width: 800px;
+  width: 600px;
   margin: auto;
-  padding: 20px;
+  padding: 10px;
   margin-bottom: 40px;
 }
 .newPost {
@@ -72,7 +78,7 @@ input {
 }
 button {
   padding: 10px;
-  width: 200px;
+  width: 140px;
   background-color: #851505;
   font-weight: 800;
   color: white;
