@@ -1,13 +1,11 @@
 <template>
 <section>
-    <header class="header">
-        <router-link to="/home">logo retour</router-link>
-    </header>
-    <div>
-        <h2>Bonjour, </h2>
-        <div class="userPseudo">{{nickname}}</div>
-        <button class="delete" @click="deleteUser()">Supprimer le profil</button>
-    </div>
+  <div class="deleteProfil">
+    <h2>Bonjour, </h2>
+    <div class="userPseudo">"{{nickname}}!"</div>
+    <div class="question">Voulez vous supprimer votre profil?</div>
+    <button class="delete" @click="deleteUser()">Supprimer le profil</button>
+  </div>
 </section>
 </template>
 
@@ -44,3 +42,24 @@ methods:{
 },
 }
 </script>
+<style scoped>
+.deleteProfil{
+text-align: center;
+background-color: white;
+color: #bb4e56;
+border-radius: 20px;
+border: 1px solid black;
+width: 70%;
+margin: auto;
+padding: 20px;
+margin-bottom: 40px;
+box-shadow: inset 0 0 20px black;
+}
+h2{
+  text-align: left;
+  padding-left: 70px;
+}
+div.userPseudo{
+  font-size: xxx-large;
+}
+</style>

@@ -58,7 +58,7 @@ export default {
   border: 1px solid black;
   background-color: white;
   border-radius: 20px;
-  width: 600px;
+  width: 60%;
   margin: auto;
   padding: 10px;
   margin-bottom: 40px;
@@ -79,7 +79,7 @@ input {
 button {
   padding: 10px;
   width: 140px;
-  background-color: #851505;
+  background-color: #bb4e56;
   font-weight: 800;
   color: white;
   border-radius: 20px;

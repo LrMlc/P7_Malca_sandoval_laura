@@ -32,3 +32,21 @@ Clonez ce projet depuis GitHub
     npm run dev ou npm run start
 
 - Ouvrir un navigateur: http://localhost:8080
+
+-------------------------------
+
+
+## CREER UN FICHIER ".ENV":
+
+- Pour plus de sécurité et dans le but de protéger votre base de données, vous devez créer votre fichier ".env". Vous devez le faire dans le répertoire "Root" de l'application. Stockez votre clé ( nom d'utilisateur, mot de passe et le json web token) dans des variables pour que le framework puisse la lire.
+
+* Exemple:
+
+user=identifiant
+pass=monmotdepasse
+jwt_secret=minusmajusc123
+
+- Attention! Le json web token secret (jwt), doit être un ensemble d'au moins 10/15 caractères de chiffres et lettres aléatoires !
+
+- Il faut également ajouter le fichier dans la liste des fichiers à ignorer (".gitignore"= afin que votre clé ne se retrouve pas en ligne. A noter que pour accéder à votre variable dans le code, vous devez utiliser la notation "process.env." suivie du nom de votre variable.
+

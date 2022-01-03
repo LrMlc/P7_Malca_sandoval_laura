@@ -30,21 +30,21 @@ module.exports.deleteComment = (req, res, next) => {
     Comments.findOne({ where: { id: req.params.id } }) // récupération d'un seul commentaire
         .then((comment) => {
 
-            if (post.UserId === req.currentUser.userId || req.currentUser.isAdmin) {
+            if (comment.UserId === req.currentUser.userId || req.currentUser.isAdmin) {
                 Comments.destroy({ where: { id: req.params.id } })
                 .then(() => 
                 {
                     res.status(200).json({ message: 'Commentaire supprimé!' });// on trouve l'objet dans la base de données
                 }
                 ).catch((error) => {
-                    res.status(400).json({ error: error });
+                    res.status(400).json({ error: error.message });
                 }
                 );
             } else { res.status(401).json({error:"Vous n'avez pas les droits pour supprimer ce commentaire"})}
         })
         .catch(error => {
             console.log(error);
-            res.status(400).json({ error });
+            res.status(400).json({ error: error.message });
         })
 };
 

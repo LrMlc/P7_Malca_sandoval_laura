@@ -1,14 +1,14 @@
 <template>
 <section class="get-one-post">
   <article class="post">
-    <div class="nicknamePost">{{ post.User.pseudo }}</div>
+    <div class="nicknamePost">{{ post.User.pseudo }}:</div>
     <div class="contentPost">{{ post.content }}</div>
     <img v-if="post.file" :src="post.file" class="filePost"/>
   </article>
   <div>
     <comments />
 </div>
-<div><button class="deletePost" placeholder="supprimer le post?" @click="deletePost(post.id)" v-if="userId == post.UserId || admin == 1"> X </button></div>
+<div><button class="deletePost" placeholder="supprimer le post?" @click="deletePost(post.id)" v-if="userId == post.UserId || isAdmin == true"> X </button></div>
 <div class="return">
   <button class="return">
     <router-link to="/home"><i class="fas fa-undo-alt"></i>Page précédente</router-link>
@@ -41,7 +41,7 @@ export default {
             )
             .then(res => {
                 if (res) {
-                    this.getAllPosts();
+                  this.$router.push("/home");
                 }
             })
             .catch(error => {
@@ -63,10 +63,10 @@ export default {
   text-align: center;
   border: 1px solid black;
   box-shadow: inset 0 0 20px black;
-  color: #851505;
+  color: #bb4e56;
   background-color: white;
   border-radius: 20px;
-  width: 800px;
+  width: 80%;
   margin: auto;
   padding: 20px;
   margin-bottom: 40px;
@@ -84,17 +84,18 @@ export default {
 }
 .contentPost {
   background-color: #fff;
-  color: #262A77;
+  color: #bb4e56;
   padding: 20px;
   margin-bottom: 10px;
+  font-size: larger;
 }
 .filePost {
   margin-bottom: 10px;
 }
-button.retun{
+.return{
   padding: 10px;
   width: 200px;
-  background-color: #851505;
+  background-color: #bb4e56;
   font-weight: 800;
   color: white;
   border-radius: 20px;
@@ -102,10 +103,14 @@ button.retun{
   margin-bottom: 10px;
   margin-top: 10px;
 }
-button .deletePost{
+button.deletePost{
   color: white;
-  background-color: #851505;
+  background-color: #bb4e56;
+  margin-bottom: 10px;
 
+}
+img.filePost{
+  width: 80%;
 }
 
 </style>

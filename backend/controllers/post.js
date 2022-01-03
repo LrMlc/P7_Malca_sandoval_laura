@@ -12,7 +12,7 @@ module.exports.createPost = (req, res, next) => {
     const post = Post.build({
         content: req.body.content,
         UserId: req.currentUser.userId,
-        file: req.file? `${req.protocol}://${req.get('host')}/images/${req.file.filename}`: "" //a lire comme condition
+        file: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : "" //a lire comme condition
         //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` // middleware mutler, on modifie l'URL de l'image, on le génère
     });
     post.save()
@@ -46,18 +46,27 @@ module.exports.modifyPost = (req, res, next) => {
 
 // DELETE
 module.exports.deletePost = (req, res, next) => {
-    Post.findOne({where: {id:req.params.id}}) // on trouve l'objet dans la base de données
+    Post.findOne({ where: { id: req.params.id } }) // on trouve l'objet dans la base de données
         .then(post => { // quand on le trouve on extrait le nom du fichier à supprimer
-            if(post.UserId === req.currentUser.userId || req.currentUser.isAdmin)
-            {
-            const filename = post.imageUrl.split('/images/')[1];
-            fs.unlink(`images/${filename}`, () => { // on le supprime
-                Post.destroy({ where:{id: req.params.id }}) // on fait la suppression de l'objet dans la base en renvoyant les réponses
+            if (post.UserId === req.currentUser.userId || req.currentUser.isAdmin) {
+                if (post.imageUrl) {
+                    const filename = post.imageUrl.split('/images/')[1];
+                    fs.unlink(`images/${filename}`, () => { // on le supprime
+                        Post.destroy({ where: { id: req.params.id } }) // on fait la suppression de l'objet dans la base en renvoyant les réponses
+                            .then(post => res.status(200).json({ message: 'Post supprimé' }))
+                            .catch(error => res.status(404).json({ error }));
+
+                    });
+                }
+                else{
+                    Post.destroy({ where: { id: req.params.id } }) // on fait la suppression de l'objet dans la base en renvoyant les réponses
                     .then(post => res.status(200).json({ message: 'Post supprimé' }))
                     .catch(error => res.status(404).json({ error }));
-            });}
-            else{
-                res.status(401).json({error:"vous n'avez pas le droit de supprimer ce post"})
+
+                }
+            }
+            else {
+                res.status(401).json({ error: "vous n'avez pas le droit de supprimer ce post" })
             }
         })
         .catch(error => res.status(500).json({ error: error.message }));
@@ -66,7 +75,7 @@ module.exports.deletePost = (req, res, next) => {
 
 // GET
 module.exports.getOnePost = (req, res, next) => {
-    Post.findOne({include: {model: User, attributes: ["pseudo"]},where:{ id: req.params.id }}) // récupération d'un seul post
+    Post.findOne({ include: { model: User, attributes: ["pseudo"] }, where: { id: req.params.id } }) // récupération d'un seul post
         .then((post) => res.status(200).json(post))
         .catch(error => {
             console.log(error);
@@ -76,7 +85,7 @@ module.exports.getOnePost = (req, res, next) => {
 
 // GET
 module.exports.getAllPosts = (req, res, next) => {
-    Post.findAll({include: {model: User, attributes: ["pseudo"]}, order: [["id","DESC"]]}) // récupération de la liste de tout les posts
+    Post.findAll({ include: { model: User, attributes: ["pseudo"] }, order: [["id", "DESC"]] }) // récupération de la liste de tout les posts
         .then(posts => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error }));
 };

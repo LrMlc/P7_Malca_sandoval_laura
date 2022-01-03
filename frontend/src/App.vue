@@ -1,6 +1,7 @@
 <template>
 <section>
   <headercomp />
+  <navcomp/>
   <router-view></router-view>
 </section>
 
@@ -9,12 +10,14 @@
 <script>
 
 import headercomp from '@/components/header.vue';
+import navcomp from '@/components/nav.vue';
 
 
 export default {
   name: 'App',
   components: {
-    headercomp
+    headercomp,
+    navcomp
   }
 }
 </script>
@@ -29,8 +32,8 @@ export default {
 }
 body {
   background: #141E30;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
+  background: -webkit-linear-gradient(to right, #1f3250, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #1f3250, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */;
   align-items: center;
   justify-content: center;
   min-height: 100vh;

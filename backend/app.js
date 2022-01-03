@@ -1,11 +1,12 @@
 // IMPORTATIONS
+require('dotenv').config();
 const express = require('express');// on importe express
 const app = express(); // création de l'application express
 const path = require('path');/* importation de node qui donne accès au chemin de notre système de fichier */
 const helmet = require('helmet'); /* técupération du middleware Helmet qui sécurise les appli Express en définissant divers en-têtes HTTP
 contient de 9 middlewares de sécurité : csp, hidePowerBy, hsts, ieNoOpen, noCache, noSniff, frameguard, clickjacking, xssFilter*/
 const db = require("./middlewares/db-config");// importation de la base de données
-const dbassoc = require("./models/db-association"); // importation des models de la base de données  // ??
+const dbassoc = require("./models/db-association"); // importation des models de la base de données  
 
 db.authenticate()
     .then(() => {

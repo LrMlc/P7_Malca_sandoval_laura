@@ -1,6 +1,7 @@
 <template>
     <nav>
-      <div class="box-profile"><router-link to="profil">Profil</router-link></div>
+      <div class="home"><router-link to="/home">Accueil</router-link></div>
+      <div class="box-profile"><router-link to="/profil">Profil</router-link></div>
       <div class="box-deconnexion"><router-link to="/"><i class="fas fa-power-off"></i>Déconnexion</router-link></div>
     </nav>   
 </template>
@@ -29,7 +30,7 @@ nav{
 }
 a{
  text-decoration: none;
- color: #851505;
+ color: #bb4e56;
  cursor: pointer;
  font-weight: 800;
 }

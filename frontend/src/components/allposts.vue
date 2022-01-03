@@ -47,17 +47,17 @@ h3 {
 .allPosts {
   text-align: center;
   background-color: white;
-  color: #851505;
+  color: #bb4e56;
   border-radius: 20px;
   border: 1px solid black;
-  width: 800px;
+  width: 70%;
   margin: auto;
   padding: 20px;
   margin-bottom: 40px;
   box-shadow: inset 0 0 20px black;
 }
 article.post {
-  border-radius: 2px solid #851505;
+  border-radius: 2px solid #bb4e56;
   cursor: pointer;
 }
 .post {
@@ -73,12 +73,15 @@ article.post {
 }
 .contentPost {
   background-color: #fff;
-  color: #262a77;
+  color: #1f3250;
   padding: 20px;
   margin-bottom: 10px;
   text-decoration: none;
 }
 .filePost {
   margin-bottom: 10px;
+}
+img.filePost{
+  width: 50%;
 }
 </style>

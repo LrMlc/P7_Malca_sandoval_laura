@@ -2,10 +2,10 @@
   <div class="allComments">
     <h3 class="titleComments">Commentaires :</h3>
     <article class="comments" v-for="comment in comments" :key="comment.id">
-        <div class="commentPseudo">{{ comment.User.pseudo }}</div>
-        <div class="commentContent">{{ comment.content }}</div>
+        <div class="commentPseudo">{{ comment.User.pseudo }}:</div>
+        <div class="commentContent">"{{ comment.content }}"</div>
         <button
-          class="deleteComment" aria-placeholder="supprimer le commenaite?" @click="deleteComment(comment.id)" v-if="userId == comment.UserId || isAdmin == 1"> X
+          class="deleteComment" aria-placeholder="supprimer le commentaire?" @click="deleteComment(comment.id)" v-if="userId == comment.UserId || isAdmin == true"> X
         </button>
     </article>
       
@@ -13,9 +13,12 @@
             <form @submit.prevent="createComment" class="formComment" >
 
                 <div class="formNewComments">
+                  <div class="whriteComment">
                     <label class="titleNewComment" for="newComment">Un commentaire ?</label> <br>
                     <textarea v-model="content" name="newComment" class="contentNewComment" placeholder="voulez-vous rajouter quelque chose?" required></textarea> <br>
                     <button class="addComment" type="submit">Commenter</button>
+                  </div>
+                    
                 </div>
             </form>
       </div>
@@ -37,7 +40,6 @@ export default {
   },
 
 methods:{  
-
 createComment() {
             axios.post("http://localhost:3000/api/comments/"+ this.$route.params.postId, 
             {
@@ -61,7 +63,7 @@ getAllCommentsByPost(){
   }))
 },
 
- deleteComments(commentId) {
+ deleteComment(commentId) {
             axios.delete("http://localhost:3000/api/comments/" + commentId , 
             )
             .then(res => {
@@ -78,7 +80,7 @@ mounted() {
     this.isAdmin=localStorage.getItem("isAdmin")=="true";
     this.userId=localStorage.getItem("userId");
     this.getAllCommentsByPost();
-    alert(this.$route.params.postId);
+    //alert(this.$route.params.postId);
   },
 }
 </script>
@@ -89,8 +91,9 @@ h3 {
 }
 .allComments {
   text-align: center;
-  border: 1px solid #851505;
-  color: #851505;
+  border: 1px solid #1f3250;
+  color: #1f3250;
+  box-shadow: 0 0 10px #1f3250;
   background-color: white;
   border-radius: 20px;
   width: 800px;
@@ -103,16 +106,23 @@ h3 {
   margin: 10px;
   cursor: pointer;
 }
-.pseudoComment {
+article.comments{
+  border: double #bb4e56;
+  width: 90%;
+  margin-bottom: 5px;
+}
+.commentPseudo {
   border-radius: 25px 25px 0 0;
   padding: 5px;
   text-align: left;
   font-weight: bold;
+  padding-left: 10px;
+  margin: 5px;
 }
 .commentContent{
   background-color: #fff;
-  color: #262a77;
-  padding: 20px;
+  color: #1f3250;
+  padding: 15px;
   margin-bottom: 10px;
 }
 .comments {
@@ -120,23 +130,34 @@ h3 {
   margin: auto;
   height: auto;
 }
-button {
-  padding: 10px;
-  width: 200px;
-  background-color: #851505;
+.whriteComment{
+  display: flex;
+  justify-content: center;
+  flex-flow: wrap;
+  margin: 10px;
+}
+.titleNewComment, .contentNewComment{
+  margin: 5px;
+}
+.contentNewComment{
+  width: 50%;
+}
+button.addComment {
+  padding: 5px;
+  width: 150px;
+  background-color: #bb4e56;
   font-weight: 800;
   color: white;
   border-radius: 20px;
   cursor: pointer;
+  margin: 8px;
+}
+button.deleteComment{
+  color: white;
+  background-color:#bb4e56 ;
   margin-bottom: 10px;
-  margin-top: 10px;
 }
-button .deleteComment{
-  color: white;
-  background-color:#851505 ;
-}
-a{
-  color: white;
+a button.deleteComment {
   text-decoration: none;
 }
 </style>
