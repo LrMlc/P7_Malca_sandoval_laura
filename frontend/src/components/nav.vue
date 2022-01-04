@@ -2,7 +2,7 @@
     <nav>
       <div class="home"><router-link to="/home">Accueil</router-link></div>
       <div class="box-profile"><router-link to="/profil">Profil</router-link></div>
-      <div class="box-deconnexion"><router-link to="/"><i class="fas fa-power-off"></i>Déconnexion</router-link></div>
+      <div class="box-deconnexion"><router-link to="/">Déconnexion</router-link></div>
     </nav>   
 </template>
 

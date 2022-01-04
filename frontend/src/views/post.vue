@@ -2,16 +2,16 @@
 <section class="get-one-post">
   <article class="post">
     <div class="nicknamePost">{{ post.User.pseudo }}:</div>
+    <div class="delete"><button class="deletePost" placeholder="supprimer le post?" @click="deletePost(post.id)" v-if="userId == post.UserId || isAdmin == true"> X </button></div>
     <div class="contentPost">{{ post.content }}</div>
     <img v-if="post.file" :src="post.file" class="filePost"/>
   </article>
   <div>
     <comments />
 </div>
-<div><button class="deletePost" placeholder="supprimer le post?" @click="deletePost(post.id)" v-if="userId == post.UserId || isAdmin == true"> X </button></div>
 <div class="return">
   <button class="return">
-    <router-link to="/home"><i class="fas fa-undo-alt"></i>Page précédente</router-link>
+    <router-link to="/home">Page précédente</router-link>
   </button>
 </div>
 </section>
@@ -92,22 +92,31 @@ export default {
 .filePost {
   margin-bottom: 10px;
 }
-.return{
-  padding: 10px;
-  width: 200px;
+button.return{
+  padding: 5px;
+  width: 150px;
   background-color: #bb4e56;
   font-weight: 800;
   color: white;
   border-radius: 20px;
   cursor: pointer;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-button.deletePost{
-  color: white;
-  background-color: #bb4e56;
-  margin-bottom: 10px;
+  margin: 8px;
 
+}
+a{
+  color:#fff;
+  text-decoration: none;
+}
+.delete{
+  display: flex;
+  justify-content: right;
+  padding-right: 15px;
+}
+button{
+color: white;
+background-color: #bb4e56;
+margin-bottom: 10px;
+cursor: pointer;
 }
 img.filePost{
   width: 80%;

@@ -4,7 +4,7 @@
 
     <article v-for="post in posts" :key="post.id" class="post">
       <router-link :to="{name:'post', params:{postId:post.id}}">
-        <div class="nicknamePost">{{ post.User.pseudo }}</div>
+        <div class="nicknamePost">{{ post.User.pseudo }}:</div>
         <div class="contentPost">{{ post.content }}</div>
         <img v-if="post.file" :src="post.file" class="filePost"/>
         
@@ -57,11 +57,14 @@ h3 {
   box-shadow: inset 0 0 20px black;
 }
 article.post {
-  border-radius: 2px solid #bb4e56;
   cursor: pointer;
+  border: double #bb4e56;
+  width: 90%;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  margin-top: 15px;
 }
 .post {
-  width: 100%;
   margin: auto;
   height: auto;
 }
@@ -70,6 +73,8 @@ article.post {
   padding: 5px;
   text-align: left;
   font-weight: bold;
+  margin: 10px;
+  color: #bb4e56;
 }
 .contentPost {
   background-color: #fff;
@@ -80,6 +85,9 @@ article.post {
 }
 .filePost {
   margin-bottom: 10px;
+}
+a{
+  text-decoration: none;
 }
 img.filePost{
   width: 50%;

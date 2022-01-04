@@ -4,9 +4,11 @@
     <article class="comments" v-for="comment in comments" :key="comment.id">
         <div class="commentPseudo">{{ comment.User.pseudo }}:</div>
         <div class="commentContent">"{{ comment.content }}"</div>
+        <div class="delete">
         <button
-          class="deleteComment" aria-placeholder="supprimer le commentaire?" @click="deleteComment(comment.id)" v-if="userId == comment.UserId || isAdmin == true"> X
+          class="deleteComment" placeholder="supprimer le commentaire?" @click="deleteComment(comment.id)" v-if="userId == comment.UserId || isAdmin == true"> X
         </button>
+        </div>
     </article>
       
       <div class="createComments">
@@ -96,7 +98,7 @@ h3 {
   box-shadow: 0 0 10px #1f3250;
   background-color: white;
   border-radius: 20px;
-  width: 800px;
+  width: 80%;
   margin: auto;
   margin-bottom: 40px;
 }
@@ -109,7 +111,8 @@ h3 {
 article.comments{
   border: double #bb4e56;
   width: 90%;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  border-radius: 15px ;
 }
 .commentPseudo {
   border-radius: 25px 25px 0 0;
@@ -152,10 +155,16 @@ button.addComment {
   cursor: pointer;
   margin: 8px;
 }
+.delete{
+  display: flex;
+  justify-content: right;
+  padding-right: 15px;
+}
 button.deleteComment{
   color: white;
   background-color:#bb4e56 ;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 a button.deleteComment {
   text-decoration: none;
