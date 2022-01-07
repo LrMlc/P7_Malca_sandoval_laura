@@ -117,7 +117,7 @@ export default {
 <style scoped>
 .card {
   max-width: 100%;
-  width: 540px;
+  width: 60%;
   background: white;
   border-radius: 16px;
   padding: 32px;
@@ -139,7 +139,6 @@ button {
   font-weight: 800;
   font-size: 15px;
   border: none;
-  width: 200px;
   padding: 16px;
   transition: 0.4s background-color;
   margin: 30px;
