@@ -110,7 +110,7 @@ a{
 .delete{
   display: flex;
   justify-content: right;
-  padding-right: 15px;
+  padding-right: 15px;             
 }
 button{
 color: white;
