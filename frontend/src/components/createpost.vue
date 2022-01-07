@@ -67,14 +67,14 @@ export default {
   margin: 5px;
 }
 .contentNewPost {
-  width: 500px;
+  width: 70%;
   height: 20px;
   padding: 5px;
   border-radius: 5px;
 }
 input {
   padding-bottom: 10px;
-  width: 400px;
+  width: 90%;
 }
 button {
   padding: 10px;
