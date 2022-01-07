@@ -4,7 +4,7 @@
     <h2>Bonjour, </h2>
     <div class="userPseudo">"{{nickname}}!"</div>
     <div class="question">Voulez vous supprimer votre profil?</div>
-    <button class="delete" @click="deleteUser()">Supprimer le profil</button>
+    <button class="delete" @click="deleteUser()">Supprimer</button>
   </div>
 </section>
 </template>
@@ -61,5 +61,19 @@ h2{
 }
 div.userPseudo{
   font-size: xxx-large;
+}
+.question{
+  margin:10px;
+}
+.delete{
+color: white;
+background-color: #bb4e56;
+margin-bottom: 10px;
+cursor: pointer;
+padding: 5px;
+width: 150px;
+font-weight: 800;
+border-radius: 20px;
+margin: 8px;
 }
 </style>
