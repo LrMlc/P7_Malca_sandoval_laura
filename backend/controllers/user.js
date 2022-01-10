@@ -1,7 +1,6 @@
 // IMPORTATIONS
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const user = require('../models/user');
 const User = require('../models/user'); 
 
 // LOGIQUE METIER
@@ -15,7 +14,7 @@ exports.signup = (req, res, next) => {
             .then(hash => { // récupération du hash du mot de passe
                 
                 const user = new User({ // création d'un nouvelle utilisateur
-                    pseudo: req.body.pseudo, // enregistrement du pseudo dans le paramètre email
+                    pseudo: req.body.pseudo, // enregistrement du pseudo dans le paramètre pseudo
                     password: hash // enregistrement du hash dans le paramètre password
                 });
                 user.save() // la méthode save enregistre l'utilisateur dans la base de donnée
@@ -44,7 +43,7 @@ exports.login = (req, res, next) => {
                         isAdmin: user.isAdmin,
                         token: jwt.sign( /* le token avec 3 arguments: les données que l'on veut encoder, la clé secrète pour l'encodage, la configuration (ici expiration)*/
                             { userId: user.id, isAdmin: user.isAdmin },
-                            "mysecret",
+                            process.env.jwt_secret,
                             { expiresIn: '24h' }
                         )
                     });
@@ -62,7 +61,11 @@ exports.login = (req, res, next) => {
 
 // Supression du profil Groupomania
 module.exports.deleteUser = (req, res, next) => {
-                if (req.params.id === req.currentUser.userId || req.currentUser.isAdmin) {
+    //console.log(typeof req.currentUser.userId);
+    //console.log(req.currentUser.userId);
+    //console.log(typeof req.params.id);
+    //console.log(req.params.id);
+                if (req.params.id == req.currentUser.userId || req.currentUser.isAdmin) {
                 User.destroy({where: {id: req.params.id}})
                 .then(() => 
                 {
@@ -72,6 +75,9 @@ module.exports.deleteUser = (req, res, next) => {
                     res.status(400).json({ error: error });
                 }
                 );
+            }
+            else{
+                res.status(401).json({ error: "vous n'avez pas le droit de supprimer"});
             }
     };
 

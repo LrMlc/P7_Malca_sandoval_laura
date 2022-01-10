@@ -27,7 +27,7 @@ methods:{
             .then(res => {
                 if (res) {
                 localStorage.removeItem('token');
-                    this.$router.push('/login'); 
+                    this.$router.push('/'); 
                 }
             })
             .catch(error => {

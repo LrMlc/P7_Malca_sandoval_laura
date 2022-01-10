@@ -2,16 +2,21 @@
     <nav>
       <div class="home"><router-link to="/home">Accueil</router-link></div>
       <div class="box-profile"><router-link to="/profil">Profil</router-link></div>
-      <div class="box-deconnexion"><router-link to="/">Déconnexion</router-link></div>
+      <div class="disconnect" @click="disconnect()">Déconnexion</div>
     </nav>   
 </template>
 
 <script>
-/*src="https://kit.fontawesome.com/113b72d011.js" crossorigin="anonymous"*/
 export default {
-  name: 'nav-comp'
-}
+  name: 'nav-comp',
 
+  methods: {
+   disconnect: function () {
+     localStorage.clear();
+     this.$router.push('/'); 
+   }
+ },
+};
 </script>
 <style scoped>
 nav{
@@ -28,7 +33,7 @@ nav{
   margin-bottom: 80px;
  
 }
-a{
+a, .disconnect{
  text-decoration: none;
  color: #bb4e56;
  cursor: pointer;

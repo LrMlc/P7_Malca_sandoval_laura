@@ -8,6 +8,8 @@ contient de 9 middlewares de sécurité : csp, hidePowerBy, hsts, ieNoOpen, noCa
 const db = require("./middlewares/db-config");// importation de la base de données
 const dbassoc = require("./models/db-association"); // importation des models de la base de données  
 
+
+// Déclencher la connexion à la base de donnée
 db.authenticate()
     .then(() => {
         console.log('Connection à la base de données réussie !');
@@ -16,7 +18,7 @@ db.authenticate()
         console.error('Impossible de se connecter à la base de données', error);
     });
 
-db.sync({ alter: true });
+db.sync({ alter: true }); // permet à sequelize de générer la base de données selon les modèles déclaré et relation
 
 //ROUTES 
 const postRoutes = require('./routes/post'); // récuperation des routes post
